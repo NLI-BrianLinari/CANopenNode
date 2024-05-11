@@ -289,6 +289,7 @@ CO_NMT_reset_cmd_t CO_NMT_process(CO_NMT_t *NMT,
     bool_t errRegMasked = (NMT->NMTcontrol & CO_NMT_ERR_ON_ERR_REG) != 0
                     && (CO_getErrorRegister(NMT->em) & NMT->NMTcontrol) != 0;
 
+    errRegMasked = 0;
     if (NMTstateCpy == CO_NMT_OPERATIONAL && (busOff_HB || errRegMasked)) {
         NMTstateCpy = (NMT->NMTcontrol & CO_NMT_ERR_TO_STOPPED) != 0
                     ? CO_NMT_STOPPED : CO_NMT_PRE_OPERATIONAL;
